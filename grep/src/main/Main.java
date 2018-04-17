@@ -1,54 +1,82 @@
 /***************************************
- * Regular Expressions and grep
- * Bill Nicholson
- * nicholdw@ucmail.uc.edu
+ * Ash Huston
+ * Assignment 09
+ * Course #, Section: Course 2045 Section 01
+ * Due 04/17/2018
+ * This class is used to test the grep method.
  */
 package main;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import grep.Grep;
+import grep.GrepMode;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		regularExpressionDemo();
-		
+		//8 test cases
 		try {
-			Grep.grep("c:\\temp\\", "cla*", true);
+			System.out.println("");
+			System.out.println("Test 1");
+			Grep.grep("G:\\Stories", "bean", true, GrepMode.DEFAULT);
 		} catch(Exception ex) {
 			System.out.println(ex.getLocalizedMessage());
 		}
-	}
-	/***
-	 * Demo the Regular Expression syntax
-	 */
-	private static void regularExpressionDemo() {
-		  System.out.println("Regular Expression Demos...");
-	      Pattern pattern = Pattern.compile("fish");
-	      Matcher matcher = pattern.matcher((CharSequence)"The fish swims");
-	      if (matcher.find( )) {
-	    	  System.out.println("Match found:" + matcher.group(0));
-	      } else {
-	    	  System.out.println("NO match found.");
-	      }
-	      // The expression must be at the beginning of the string.
-	      pattern = Pattern.compile("^fish");
-	      matcher = pattern.matcher((CharSequence)"The fish swims");
-	      if (matcher.find( )) {
-	    	  System.out.println("Match found:" + matcher.group(0));
-	      } else {
-	    	  System.out.println("NO match found.");
-	      }
-	      // The expression must have 5 digits in a row
-	      pattern = Pattern.compile("\\d{5}");			// It's actually \d{5}
-	      matcher = pattern.matcher((CharSequence)"aaa 12345 bbbb");
-	      if (matcher.find( )) {
-	    	  System.out.println("Match found:" + matcher.group(0));
-	      } else {
-	    	  System.out.println("NO match found.");
-	      }
+		
+		try {
+			System.out.println("");
+			System.out.println("Test 2");
+			Grep.grep("G:\\Stories", "AmErIcA", true, GrepMode.NOCASE);
+		} catch(Exception ex) {
+			System.out.println(ex.getLocalizedMessage());
+		}
+		
+		try {
+			System.out.println("");
+			System.out.println("Test 3");
+			Grep.grep("G:\\Stories", "One", true, GrepMode.BEGINLINE);
+		} catch(Exception ex) {
+			System.out.println(ex.getLocalizedMessage());
+		}
+		
+		try {
+			System.out.println("");
+			System.out.println("Test 4");
+			Grep.grep("G:\\Stories", "meat", true, GrepMode.DEFAULT);
+		} catch(Exception ex) {
+			System.out.println(ex.getLocalizedMessage());
+		}
+		
+		try {
+			System.out.println("");
+			System.out.println("Test 5");
+			Grep.grep("G:\\Stories", "large", true, GrepMode.NOCASE);
+		} catch(Exception ex) {
+			System.out.println(ex.getLocalizedMessage());
+		}
+		
+		try {
+			System.out.println("");
+			System.out.println("Test 6");
+			Grep.grep("G:\\Stories", "man", true, GrepMode.ENDLINE);
+		} catch(Exception ex) {
+			System.out.println(ex.getLocalizedMessage());
+		}
+		
+		try {
+			System.out.println("");
+			System.out.println("Test 7");
+			Grep.grep("G:\\Stories", "All", true, GrepMode.DEFAULT);
+		} catch(Exception ex) {
+			System.out.println(ex.getLocalizedMessage());
+		}
+		
+		try {
+			System.out.println("");
+			System.out.println("Test 8");
+			Grep.grep("G:\\Stories", "Eat", true, GrepMode.DEFAULT);
+		} catch(Exception ex) {
+			System.out.println(ex.getLocalizedMessage());
+		}
 	}
 }
