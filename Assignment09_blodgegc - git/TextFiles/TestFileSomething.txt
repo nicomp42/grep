@@ -1,0 +1,4 @@
+Modify the grep project at https://github.com/nicomp42/grep .
+Your mods should include at least three options to change the behavior of grep. Look up grep online to see what options are implemented in different versionns of the utility. Hint: "ignore case" is an easy one.
+Submit your mod'd project to your branch of the grep repo and post your link here. Do not submit code here.
+In two weeks we will demo our work to the class. Have a presentation prepared: files, directories, etc. A flash drive would be a good place to build your demo file structure.
