@@ -1,7 +1,10 @@
 /***************************************
- * Regular Expressions and grep
- * Bill Nicholson
- * nicholdw@ucmail.uc.edu
+ * Jennifer Palazzolo
+ * AssignmentPracticeInput
+ * 04/17/2018
+ * Computer Programming II 2045C/001/Spring2018
+ * Citations:
+ * Calculates grep
  */
 package main;
 
@@ -16,7 +19,7 @@ public class Main {
 		regularExpressionDemo();
 		
 		try {
-			Grep.grep("c:\\temp\\", "cla*", true);
+			Grep.grep("trapping.txt", "cla*", true);
 		} catch(Exception ex) {
 			System.out.println(ex.getLocalizedMessage());
 		}
@@ -27,12 +30,12 @@ public class Main {
 	 */
 	private static void regularExpressionDemo() throws IOException {
 		//The expression can be anywhere in the file and is not case sensitive
-		Grep.grep("\\trapping.txt\\", "and", true);
+		Grep.grep("trapping.txt", "and", true);
 
 	    // The expression must be at the end of the string.
-	    Grep.grep("\\trapping.txt\\", "and$", true);
+	    Grep.grep("trapping.txt", "and$", true);
 
 	    // The expression can not be in the search line
-	    Grep.grep("\\trapping.txt\\", "-v and", true);
+	    Grep.grep("trapping.txt", "-v and", true);
 	}
 }

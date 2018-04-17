@@ -1,8 +1,12 @@
-/************************************************
- * grep utility
- * Bill Nicholson
- * nicholdw@ucmail.uc.edu
+/***************************************
+ * Jennifer Palazzolo
+ * AssignmentPracticeInput
+ * 04/17/2018
+ * Computer Programming II 2045C/001/Spring2018
+ * Citations:
+ * Calculates grep
  */
+
 package grep;
 
 import java.io.BufferedReader;
