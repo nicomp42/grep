@@ -24,25 +24,25 @@ import java.util.stream.Stream;
  *
  */
 public class Grep {
-	public static void grep(String filePath, String searchString, boolean recurse) throws IOException {
+	public static void grep(String filePath, String searchString, String config, boolean recurse) throws IOException {
 		Path myPath = Paths.get(filePath);
 		try (Stream<Path> entries = Files.list(myPath)) {
 			List<Path> paths = entries.collect(Collectors.toList());
 			for (Path path : paths) {
-				//System.out.print(path.toString());
+				System.out.print(path.toString());
 				File myFile = new File(path.toString());
 				if (myFile.isDirectory()) {
-				    //System.out.println("  It's a directory");
+				    System.out.println("  It's a directory");
 					if (recurse) {
-						grep(myFile.toString(), searchString, true);
+						grep(myFile.toString(), searchString, config, true);
 					}
 				} else {
-				    //System.out.println("  It's a file");
-				    scan(myFile, searchString);  
+				    System.out.println("  It's a file");
+				    scan(myFile, searchString, config);
 				}
-				//System.out.println(path.toString() + ", " + path.getFileName() + ", " + path.getName(0) + ", " + path.getClass().toString());
+				System.out.println(path.toString() + ", " + path.getFileName() + ", " + path.getName(0) + ", " + path.getClass().toString());
 			}
-			//System.out.println(paths.toString());
+			System.out.println(paths.toString());
 		}
 	}
 	/***
@@ -50,9 +50,9 @@ public class Grep {
 	 * @param file The file to scan
 	 * @param searchString The string to search for
 	 */
-	private static void scan(File file, String searchString) {
+	private static void scan(File file, String searchString, String config) {
 	      // Create a Pattern object
-	      Pattern pattern = Pattern.compile(searchString);
+	    Pattern pattern = Pattern.compile(searchString);
 		try {
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
@@ -60,6 +60,9 @@ public class Grep {
 			String buffer;
 			int line = 1;		// Line number in the file that we are reading
 			while ((buffer = br.readLine()) != null) {
+				// Properties used by config options
+				int numOccurrences = 0;
+				
 			      // Now create matcher object.
 			      Matcher matcher = pattern.matcher((CharSequence)buffer);
 			      if (matcher.find( )) {
@@ -70,6 +73,28 @@ public class Grep {
 			      }
 				if (buffer.contains(searchString) ) {
 					//System.out.println(file.toString() + ": " + line + ": " + buffer);
+				}
+				/**
+				 * @author batschew
+				 */
+				// Implement config options
+				if (config.contains("i")) {
+					// Turn both search string and buffer to lowercase
+					searchString = searchString.toLowerCase();
+					buffer.toLowerCase();
+					if(buffer.contains(searchString)) {
+						System.out.println(file.toString() + ": " + line + ": " + buffer);
+					}
+				}
+				else if (config.contains("n")) {
+					if(buffer.contains(searchString)) {
+						numOccurrences++;
+					}
+				}
+				else if (config.contains("v")) {
+					if(!(buffer.contains(searchString))) {
+						System.out.println(file.toString() + ": " + line + ": " + buffer);
+					}
 				}
 				line++;
 			}

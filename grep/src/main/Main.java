@@ -17,7 +17,7 @@ public class Main {
 		regularExpressionDemo();
 		
 		try {
-			Grep.grep("c:\\temp\\", "cla*", true);
+			Grep.grep("c:\\temp\\", "cla*", "n", true);
 		} catch(Exception ex) {
 			System.out.println(ex.getLocalizedMessage());
 		}
