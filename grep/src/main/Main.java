@@ -5,14 +5,13 @@
  */
 package main;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.IOException;
 
 import grep.Grep;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		regularExpressionDemo();
 		
@@ -24,31 +23,16 @@ public class Main {
 	}
 	/***
 	 * Demo the Regular Expression syntax
+	 * @throws IOException 
 	 */
-	private static void regularExpressionDemo() {
-		  System.out.println("Regular Expression Demos...");
-	      Pattern pattern = Pattern.compile("fish");
-	      Matcher matcher = pattern.matcher((CharSequence)"The fish swims");
-	      if (matcher.find( )) {
-	    	  System.out.println("Match found:" + matcher.group(0));
-	      } else {
-	    	  System.out.println("NO match found.");
-	      }
-	      // The expression must be at the beginning of the string.
-	      pattern = Pattern.compile("^fish");
-	      matcher = pattern.matcher((CharSequence)"The fish swims");
-	      if (matcher.find( )) {
-	    	  System.out.println("Match found:" + matcher.group(0));
-	      } else {
-	    	  System.out.println("NO match found.");
-	      }
-	      // The expression must have 5 digits in a row
-	      pattern = Pattern.compile("\\d{5}");			// It's actually \d{5}
-	      matcher = pattern.matcher((CharSequence)"aaa 12345 bbbb");
-	      if (matcher.find( )) {
-	    	  System.out.println("Match found:" + matcher.group(0));
-	      } else {
-	    	  System.out.println("NO match found.");
-	      }
+	private static void regularExpressionDemo() throws IOException {
+		//The expression can be anywhere in the file and is not case sensitive
+		Grep.grep("\\trapping.txt\\", "and", true);
+
+	    // The expression must be at the end of the string.
+	    Grep.grep("\\trapping.txt\\", "and$", true);
+
+	    // The expression can not be in the search line
+	    Grep.grep("\\trapping.txt\\", "-v and", true);
 	}
 }

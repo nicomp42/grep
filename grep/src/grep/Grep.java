@@ -24,7 +24,7 @@ import java.util.stream.Stream;
  *
  */
 public class Grep {
-	public static void grep(String filePath, String searchString, boolean recurse) throws IOException {
+	public static void grep(String filePath, String string, boolean i) throws IOException {
 		Path myPath = Paths.get(filePath);
 		try (Stream<Path> entries = Files.list(myPath)) {
 			List<Path> paths = entries.collect(Collectors.toList());
@@ -33,12 +33,12 @@ public class Grep {
 				File myFile = new File(path.toString());
 				if (myFile.isDirectory()) {
 				    //System.out.println("  It's a directory");
-					if (recurse) {
-						grep(myFile.toString(), searchString, true);
+					if (i) {
+						grep(myFile.toString(), string, true);
 					}
 				} else {
 				    //System.out.println("  It's a file");
-				    scan(myFile, searchString);  
+				    scan(myFile, string);  
 				}
 				//System.out.println(path.toString() + ", " + path.getFileName() + ", " + path.getName(0) + ", " + path.getClass().toString());
 			}
