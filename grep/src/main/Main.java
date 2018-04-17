@@ -1,7 +1,12 @@
-/***************************************
- * Regular Expressions and grep
- * Bill Nicholson
- * nicholdw@ucmail.uc.edu
+/**
+ * Assignment 09
+ * @author Stephen Meckstroth
+ * Description: An assignment to learn regex and implement grep commands using java
+ * Due Date: Apr 17, 2018
+ * Course: IT2045 Section 001
+ * email: meckstss@mail.uc.edu
+ * Citations: https://stackoverflow.com/questions/7569335/reverse-a-string-in-java
+ * https://stackoverflow.com/questions/7459263/regex-whole-word
  */
 package main;
 
@@ -17,7 +22,15 @@ public class Main {
 		regularExpressionDemo();
 		
 		try {
-			Grep.grep("c:\\temp\\", "cla*", true);
+			//Match case sensitive
+			//Grep.grep("e:\\", "get", true, true, false, false);
+			//Match case insensitive
+			//Grep.grep("e:\\", "get", true, false, false, false);
+			//Match case insensitive, and invert match (i.e.: TEG matches GET)
+			//Grep.grep("e:\\", "get", true, false, true, false);
+			
+			//Match whole words only (i.e.: get does not get matched from the word forget.  get has to be surrounded by whitespace
+			Grep.grep("e:\\", "like", true, false, false, true);
 		} catch(Exception ex) {
 			System.out.println(ex.getLocalizedMessage());
 		}
