@@ -1,12 +1,9 @@
-/***************************************
- * Jennifer Palazzolo
- * AssignmentPracticeInput
- * 04/17/2018
- * Computer Programming II 2045C/001/Spring2018
- * Citations:
- * Calculates grep
+/************************************************
+ * grep utility
+ * Bill Nicholson
+ * nicholdw@ucmail.uc.edu
+ * 
  */
-
 package grep;
 
 import java.io.BufferedReader;
@@ -28,7 +25,7 @@ import java.util.stream.Stream;
  *
  */
 public class Grep {
-	public static void grep(String filePath, String string, boolean i) throws IOException {
+	public static void grep(String filePath, String searchString, boolean recurse) throws IOException {
 		Path myPath = Paths.get(filePath);
 		try (Stream<Path> entries = Files.list(myPath)) {
 			List<Path> paths = entries.collect(Collectors.toList());
@@ -37,12 +34,12 @@ public class Grep {
 				File myFile = new File(path.toString());
 				if (myFile.isDirectory()) {
 				    //System.out.println("  It's a directory");
-					if (i) {
-						grep(myFile.toString(), string, true);
+					if (recurse) {
+						grep(myFile.toString(), searchString, true);
 					}
 				} else {
 				    //System.out.println("  It's a file");
-				    scan(myFile, string);  
+				    scan(myFile, searchString);  
 				}
 				//System.out.println(path.toString() + ", " + path.getFileName() + ", " + path.getName(0) + ", " + path.getClass().toString());
 			}
