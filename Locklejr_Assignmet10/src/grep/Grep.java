@@ -57,13 +57,14 @@ public class Grep {
 	 */
 	private static void scan(File file, String searchString) {
 	      // Create a Pattern object/ I made this ignore case
-	      Pattern pattern = Pattern.compile(searchString, Pattern.CASE_INSENSITIVE);
+		
+	      Pattern pattern = Pattern.compile(searchString, Pattern.CASE_INSENSITIVE);// I added this line to make it ignore case
 		try {
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			
 			String buffer;
-			int line = 0;		// Line number in the file that we are reading/ I changed this to zero to look through more files
+			int line = 0;		// Line number in the file that we are reading/** I changed this to zero to look through more files
 			while ((buffer = br.readLine()) != null) {
 			      // Now create matcher object.
 			      Matcher matcher = pattern.matcher((CharSequence)buffer);
