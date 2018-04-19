@@ -135,8 +135,7 @@ public class Main {
 	    	  System.out.println("Word with Length not between 10 -30 characters.");
 	      }   
 	      
-	      
-		
+	      		
 	}
 		 	
 }
