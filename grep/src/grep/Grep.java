@@ -62,8 +62,7 @@ public class Grep {
 	/***
 	 * A method that scans a file for a string
 	 * @param file The file to scan
-	 * @param searchString The string to search for
-	 * @throws FileNotFoundException 
+	 * @param searchString The string to search fo	 * @throws FileNotFoundException 
 	 */
 	private static void scan(File file, String searchString) throws FileNotFoundException {
 	      
@@ -88,13 +87,13 @@ public class Grep {
 		try {
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
+			
 			String buffer;
-			int line = 0;		// Line number in the file that we are reading
+			int line = 0;
 			while ((buffer = br.readLine()) != null) {
 			      Matcher matcher = pattern.matcher((CharSequence)buffer);
 			      while(matcher.find()) {
-			    	  if(matcher.group().length() != 0) {
-					  
+			    	  if(matcher.group().length() != 0) {  
 			    	  System.out.println(file.toString() + ": " + "Starting index " + line + ": " + buffer.replaceAll("[\\s]", ", "));
 			    	  System.out.println("Found at: " + matcher.start() + " - " + matcher.end());
 			    	  }
