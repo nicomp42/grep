@@ -46,9 +46,9 @@ public class Main {
 		  // Output stating the Regular Expression Demos
 		  System.out.println("Regular Expression Demos...");
 		  
-		  /**
-		   * Testing for "fish"
-		   */
+	      /**
+	       * Testing for "fish"
+	       */
 		  // if fish is contained within the string test passes else, fails.
 	      Pattern pattern = Pattern.compile("fish");
 	      Matcher matcher = pattern.matcher((CharSequence)"The fish swims");
