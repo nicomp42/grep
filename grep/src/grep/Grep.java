@@ -1,8 +1,17 @@
+/*****************************************************
+ *Name: Ben Tenhover
+ *Assignment: Assignment 10
+ *Due Date: 4/19/2018
+ *Course/Section/Semester: 2045C/002/Spring 2018
+ *Email: tenhovbe@mail.uc.edu
+ *Citations: StackOverFlow.com, regexlib.com, in-class work, textbook
+ *Description: Modify the grep project to change the behavior of grep at least 3 different ways
+ */
+
 /************************************************
  * grep utility
  * Bill Nicholson
  * nicholdw@ucmail.uc.edu
- * 
  */
 package grep;
 
@@ -22,10 +31,13 @@ import java.util.stream.Stream;
 /***
  * Grep Utility
  * @author nicomp
- *
+ * Processes the files and directories in the filePath string
+ * @param filePath the directory to begin searching in. It cannot be a single file, must be a directory
+ * @param searchString The regular expression to match
+ * @param recurse If true, delve into any subdirectory to find match
  */
 public class Grep {
-	public static void grep(String filePath, String searchString, boolean recurse) throws IOException {
+	public static void grep(String filePath, String searchString, boolean recurse) throws IOException { 
 		Path myPath = Paths.get(filePath);
 		try (Stream<Path> entries = Files.list(myPath)) {
 			List<Path> paths = entries.collect(Collectors.toList());
@@ -34,8 +46,10 @@ public class Grep {
 				File myFile = new File(path.toString());
 				if (myFile.isDirectory()) {
 				    //System.out.println("  It's a directory");
+					
 					if (recurse) {
 						grep(myFile.toString(), searchString, true);
+						
 					}
 				} else {
 				    //System.out.println("  It's a file");
@@ -49,7 +63,7 @@ public class Grep {
 	/***
 	 * Scan a file for a string
 	 * @param file The file to scan
-	 * @param searchString The string to search for
+	 * @param searchString The string to search for, can be a regular expression
 	 */
 	private static void scan(File file, String searchString) {
 	      // Create a Pattern object
