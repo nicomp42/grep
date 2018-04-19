@@ -91,16 +91,15 @@ public class Grep {
 			String buffer;
 			int line = 0;		// Line number in the file that we are reading
 			while ((buffer = br.readLine()) != null) {
-			      // Now create matcher object.
 			      Matcher matcher = pattern.matcher((CharSequence)buffer);
 			      while(matcher.find()) {
 			    	  if(matcher.group().length() != 0) {
-			    	  // RegEx Match
+					  
 			    	  System.out.println(file.toString() + ": " + "Starting index " + line + ": " + buffer.replaceAll("[\\s]", ", "));
 			    	  System.out.println("Found at: " + matcher.start() + " - " + matcher.end());
 			    	  }
 			       else {
-			    	 // System.out.println("No Match");
+			    	  System.out.println("No Match");
 			      }
 				if (buffer.contains(searchString)) {
 					System.out.println(file.toString() + ": " + line + ": " + buffer);
