@@ -1,3 +1,11 @@
+/* Jacob Lynch 
+ * 2045c 002 
+ * Lynch2jw_Assignment10
+ * April 19th 2018
+ * Create 3 new regular expressions 
+ *
+ */
+
 /************************************************
  * grep utility
  * Bill Nicholson
