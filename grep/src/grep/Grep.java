@@ -2,6 +2,10 @@
  * grep utility
  * Bill Nicholson
  * nicholdw@ucmail.uc.edu
+ * edited by Kiefer Cunningham
+ * cunninkf@mail.uc.edu
+ * due 04/19/18
+ * computer programming 2 section 2
  */
 package grep;
 
@@ -21,10 +25,13 @@ import java.util.stream.Stream;
 /***
  * Grep Utility
  * @author nicomp
+ *@param filw path the directory to begin searching in . it cannot be a single file must ve a directory 
+ *@param search string 
  *
  */
+//processes the files and directories in the file path  passes the file paths that are given to it 
 public class Grep {
-	public static void grep(String filePath, String searchString, boolean recurse) throws IOException {
+	public static void grep(String filePath, String searchString, boolean recurse,String Either,boolean TwoOrMore) throws IOException {
 		Path myPath = Paths.get(filePath);
 		try (Stream<Path> entries = Files.list(myPath)) {
 			List<Path> paths = entries.collect(Collectors.toList());
@@ -34,7 +41,7 @@ public class Grep {
 				if (myFile.isDirectory()) {
 				    //System.out.println("  It's a directory");
 					if (recurse) {
-						grep(myFile.toString(), searchString, true);
+						grep(myFile.toString(), searchString, true, Either, TwoOrMore);
 					}
 				} else {
 				    //System.out.println("  It's a file");
@@ -50,6 +57,7 @@ public class Grep {
 	 * @param file The file to scan
 	 * @param searchString The string to search for
 	 */
+	// does the grepping matches file paths 
 	private static void scan(File file, String searchString) {
 	      // Create a Pattern object
 	      Pattern pattern = Pattern.compile(searchString);
@@ -62,20 +70,23 @@ public class Grep {
 			while ((buffer = br.readLine()) != null) {
 			      // Now create matcher object.
 			      Matcher matcher = pattern.matcher((CharSequence)buffer);
-			      if (matcher.find( )) {
+			      if (matcher.find()) {
 			    	  // RegEx Match
 			    	  System.out.println(file.toString() + ": " + line + ": " + buffer);// + " => " + m.group(0));
+			    	  
 			      } else {
-			    	 // System.out.println("No Match");
+			    	 //System.out.println("No Match");
 			      }
-				if (buffer.contains(searchString) ) {
+				if (buffer.contains(searchString)) {
 					//System.out.println(file.toString() + ": " + line + ": " + buffer);
+					
 				}
 				line++;
 			}
 			br.close();
 		} catch (Exception ex) {
 			System.out.println(ex.getLocalizedMessage());
-		}	
-	}
+		}
+	}	
 }
+		
