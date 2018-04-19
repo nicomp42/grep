@@ -31,8 +31,29 @@ public class Main {
 		 */
 		// Try block calls the Grep Utility method grep
 		// if filepath, a string, and recursed is true are listed a file will be searched for specified string else catch exception
+		// First testing to show all 's' in a made directory GrepExample within file DogStuff
+		// Second testing to show all 'F' in a made directory GrepExample within file OfficeStuff
+		// Third testing to show all 'a' in a made directory GrepExample within file CarStuff
 		try {
-			Grep.grep("D:\\GrepExample\\", "d*" , true);
+			Grep.grep("D:\\GrepExample\\DogStuff", "s*" , true);
+		} catch(Exception ex) {
+			System.out.println(ex.getLocalizedMessage());
+		}
+		
+		// Line output to separate testing try catch blocks to help section what we read a bit better
+		System.out.println("===============================================================================");
+		
+		try {
+			Grep.grep("D:\\GrepExample\\OfficeStuff", "F*" , true);
+		} catch(Exception ex) {
+			System.out.println(ex.getLocalizedMessage());
+		}
+		
+		// Line output to separate testing try catch blocks to help section what we read a bit better
+		System.out.println("===============================================================================");
+		
+		try {
+			Grep.grep("D:\\GrepExample\\CarStuff", "a*" , true);
 		} catch(Exception ex) {
 			System.out.println(ex.getLocalizedMessage());
 		}
