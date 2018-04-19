@@ -127,10 +127,10 @@ public class Main {
 	      System.out.println("Third regular expression");
 	     
 	      
-	    Pattern testPlural = Pattern.compile("[A-Za-z]{10,30}"); // This regular expression looks for a word 5 through 10 charcters 
-	      Matcher pluralTest1 = testPlural.matcher((CharSequence)"California Ohio Georgia");
-	      if (pluralTest1.find( )) {
-	    	  System.out.println("Word with Length between 10-30:" + pluralTest1.group(0));
+	    Pattern testLength2 = Pattern.compile("[A-Za-z]{10,30}"); // This regular expression looks for a word 5 through 10 charcters 
+	      Matcher lengthTest2 = testLength2.matcher((CharSequence)"California Ohio Georgia");
+	      if (lengthTest2.find( )) {
+	    	  System.out.println("Word with Length between 10-30:" + lengthTest2.group(0));
 	      } else {
 	    	  System.out.println("Word with Length not between 10 -30 characters.");
 	      }   
